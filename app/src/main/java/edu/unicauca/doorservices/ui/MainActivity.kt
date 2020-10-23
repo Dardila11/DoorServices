@@ -2,7 +2,10 @@ package edu.unicauca.doorservices.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import edu.unicauca.doorservices.R
+import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
