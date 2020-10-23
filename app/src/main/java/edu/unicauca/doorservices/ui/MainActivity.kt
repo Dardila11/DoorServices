@@ -1,8 +1,8 @@
-package edu.unicauca.doorservices
+package edu.unicauca.doorservices.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import edu.unicauca.doorservices.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -10,9 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNav : BottomNavigationView = findViewById(R.id.bottom_nav)
-        bottomNav.selectedItemId = R.id.menu_search
-        bottomNav.setOnNavigationItemSelectedListener { item ->
+        bottom_nav.selectedItemId = R.id.menu_search
+        bottom_nav.setOnNavigationItemSelectedListener { item ->
+
             when(item.itemId) {
                 // TODO 1: Change this so it returns fragments
                 R.id.menu_categories -> {

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1003913966368",
+    "firebase_url": "https://doorservices-uni.firebaseio.com",
+    "project_id": "doorservices-uni",
+    "storage_bucket": "doorservices-uni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003913966368:android:96308e1ad6bb55f1fe5d45",
+        "android_client_info": {
+          "package_name": "edu.unicauca.doorservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003913966368-mvk4620rs2j4fphhehacn32sobaetbms.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhxgbj-WnsCSZoD10IpsenviBpJwoRndk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003913966368-mvk4620rs2j4fphhehacn32sobaetbms.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
