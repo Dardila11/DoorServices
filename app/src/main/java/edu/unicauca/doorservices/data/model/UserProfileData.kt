@@ -7,5 +7,5 @@ class UserProfileData {
     var email: String = ""
     var phone: String = ""
     // this should be a list of payment methods id
-    var paymentMethods = ""
+    var paymentMethods: ArrayList<String> = ArrayList()
 }

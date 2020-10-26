@@ -3,12 +3,12 @@ package edu.unicauca.doorservices.data.model
 
 class Service {
 
-     private var serviceId: String = ""
-     private var categoryId: String = ""
-     private var userId: String = ""
-     private var title: String = ""
-     private var description: String = ""
-     private var price: String = ""
+      var serviceId: String = ""
+      var categoryId: String = ""
+      var userId: String = ""
+      var title: String = ""
+      var description: String = ""
+      var price: String = ""
 
     constructor()
 
@@ -44,8 +44,15 @@ class Service {
      * @param service
      * @return map of key and value data
      */
-    fun toMap( service: Service) : MutableMap<String, Any>? {
-        TODO("Not yet implemented")
+    fun toMap() : HashMap<String, String> {
+        return hashMapOf(
+            "title" to title,
+            "description" to description,
+            "price" to price,
+            "category_id" to categoryId,
+            "user_id" to userId,
+            "serv_id" to serviceId
+        )
     }
 
 

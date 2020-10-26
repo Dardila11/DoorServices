@@ -8,4 +8,7 @@
     <string name="categories_fragment">Categories Fragment</string>
     <string name="los_mas_solicitado">Los mas solicitado</string>
     <string name="titulo_de_la_categoria">titulo de la categoria</string>
+    <string name="descripcion_de_la_categoria">descripcion de la categoria</string>
+    <string name="hint_search">plomero, mecánico</string>
+    <string name="client_address">Calle falsa 123</string>
 </resources>

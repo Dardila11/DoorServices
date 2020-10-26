@@ -5,9 +5,13 @@ import edu.unicauca.doorservices.data.model.Service
 
 interface ServiceRepository {
 
-    fun getServiceById(id: String)
-    fun getAllServices() : ArrayList<Service>
-    fun getAllServicesByCategoryId( id: String ) : ArrayList<Service>
+    suspend fun getServiceById(id: String) : Service
+    suspend fun getAllServices() : ArrayList<Service>
+    suspend fun getAllServicesByCategoryId( id: String ) : ArrayList<Service>
 
-    // TODO 1 : Create service fun
+    suspend fun createService( service: Service)
+    suspend fun updateService(service: Service)
+    suspend fun deleteServiceById( servId: String)
+
+
 }

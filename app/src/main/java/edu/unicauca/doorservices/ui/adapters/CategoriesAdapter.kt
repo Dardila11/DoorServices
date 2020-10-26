@@ -14,6 +14,7 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val catTitle: TextView
+        val catDescription: TextView
         // TODO add category image
         init {
             // Define click listener for the ViewHolder's View.
@@ -21,6 +22,7 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
                 Log.d(TAG, "Element $adapterPosition clicked")
             }
             catTitle = v.findViewById(R.id.cat_title)
+            catDescription = v.findViewById(R.id.cat_description)
         }
     }
 
@@ -35,6 +37,7 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
     override fun onBindViewHolder(holder: CategoriesAdapter.ViewHolder, position: Int) {
         Log.d(TAG, "Element $position set.")
         holder.catTitle.text = categoriesList[position].categoryName
+        holder.catDescription.text = categoriesList[position].categoryDescription
 
 
     }

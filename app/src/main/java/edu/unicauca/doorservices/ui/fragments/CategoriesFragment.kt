@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Category
+import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
+import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
 import edu.unicauca.doorservices.ui.adapters.CategoriesAdapter
-import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -27,8 +28,11 @@ class CategoriesFragment : Fragment(), CoroutineScope {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private lateinit var categoriesList : ArrayList<Category>
     private lateinit var job:Job
+    private lateinit var myService: Service
 
     private var categoryRepositoryImpl = CategoryRepositoryImpl()
+    private var serviceRepositoryImpl = ServiceRepositoryImpl()
+
 
     override  fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +50,9 @@ class CategoriesFragment : Fragment(), CoroutineScope {
         lifecycleScope.launch {
             categoriesList = ArrayList()
             categoriesList = categoryRepositoryImpl.getAllCategories()
+
+            myService = Service("1", "1", "1", "Mi nuevo servicio", "la descripción", "110000")
+            serviceRepositoryImpl.createService(myService)
 
             recyclerView = rootView.findViewById(R.id.recycler_categories)
             layoutManager = LinearLayoutManager(activity)
