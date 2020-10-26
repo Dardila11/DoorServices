@@ -15,6 +15,7 @@ class CategoryRepositoryImpl: CategoryRepository {
     }
 
     override suspend fun getAllCategories(): ArrayList<Category> {
+        // TODO handle exceptions
         val categories = ArrayList<Category>()
         val documents = db.collection("categories").get().await()
         for (document in documents) {
@@ -23,21 +24,4 @@ class CategoryRepositoryImpl: CategoryRepository {
         }
         return categories
     }
-
-
-    /*override suspend fun getAllCategories(): ArrayList<Category> {
-        val categories = ArrayList<Category>()
-        db.collection("categories")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val category = Category(document.data["catId"] as String, document.data["name"] as String)
-                    categories.add(category)
-                }
-            }
-            .addOnFailureListener() { exception ->
-                Log.w("Shit, error", "Error getting documents.", exception)
-            }
-        return categories
-    }*/
 }
