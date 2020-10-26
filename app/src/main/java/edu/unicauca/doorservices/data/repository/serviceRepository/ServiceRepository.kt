@@ -6,7 +6,8 @@ import edu.unicauca.doorservices.data.model.Service
 interface ServiceRepository {
 
     fun getServiceById(id: String)
-    fun getAllServices() : List<Service>
-    fun getAllServicesByCategoryId( id: String ) : List<Service>
+    fun getAllServices() : ArrayList<Service>
+    fun getAllServicesByCategoryId( id: String ) : ArrayList<Service>
 
+    // TODO 1 : Create service fun
 }
