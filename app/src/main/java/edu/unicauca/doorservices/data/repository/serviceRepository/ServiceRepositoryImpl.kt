@@ -7,6 +7,7 @@ import edu.unicauca.doorservices.data.model.Service
 
 class ServiceRepositoryImpl : ServiceRepository {
 
+
     private val db = Firebase.firestore
 
     override fun getServiceById(id: String) {
@@ -14,25 +15,20 @@ class ServiceRepositoryImpl : ServiceRepository {
     }
 
     override fun getAllServices(): ArrayList<Service> {
-        // 1. an arraylist to store data
-        val services = ArrayList<Service>()
-        // 2. query firestore database
-        db.collection("services")
+        val servicesList = ArrayList<Service>()
+        db.collection("Services")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents){
-                    Log.d("Getting all services", "${document.data}")
-                    // new Service constructor
-                    // add new service to services
+                    val service = Service().fromMap(document.data)
+                    servicesList.add(service)
                 }
             }
             .addOnFailureListener {exception ->
                 Log.d("error", exception.toString())
 
             }
-        // 3. get all services to the arraylist
-        // return arrayList
-        return services
+        return servicesList
     }
 
     override fun getAllServicesByCategoryId(id: String): ArrayList<Service> {

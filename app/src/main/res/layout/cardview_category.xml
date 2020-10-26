@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_category"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
+    android:layout_margin="15dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
+    app:contentPadding="10dp">
+
+
+    <TextView
+        android:id="@+id/cat_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_de_la_categoria" />
+</androidx.cardview.widget.CardView>
