@@ -8,4 +8,6 @@ interface ServiceRepository {
     fun getServiceById(id: String)
     fun getAllServices() : ArrayList<Service>
     fun getAllServicesByCategoryId( id: String ) : ArrayList<Service>
+
+    // TODO 1 : Create service fun
 }

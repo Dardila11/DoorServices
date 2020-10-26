@@ -2,39 +2,54 @@ package edu.unicauca.doorservices.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import androidx.fragment.app.Fragment
+import com.google.firebase.FirebaseApp
 import edu.unicauca.doorservices.R
-import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
+import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
+import edu.unicauca.doorservices.ui.fragments.CategoriesFragment
+import edu.unicauca.doorservices.ui.fragments.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private val serviceRepositoryImpl = ServiceRepositoryImpl()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
+
         setContentView(R.layout.activity_main)
 
-        bottom_nav.selectedItemId = R.id.menu_search
+
+
+        serviceRepositoryImpl.getAllServices()
+
+
         bottom_nav.setOnNavigationItemSelectedListener { item ->
 
             when(item.itemId) {
-                // TODO 1: Change this so it returns fragments
                 R.id.menu_categories -> {
-                    val menuItemSelected = "Categorias"
-                    lbl_title.text = menuItemSelected
+                    val fragment = CategoriesFragment.newInstance()
+                    openFragment(fragment)
                     true
                 }
                 R.id.menu_search -> {
-                    val menuItemSelected = "Buscar"
-                    lbl_title.text = menuItemSelected
+                    val fragment = SearchFragment.newInstance()
+                    openFragment(fragment)
                     true
                 }
                 R.id.menu_my_orders -> {
-                    val menuItemSelected = "Mis pedidos"
-                    lbl_title.text = menuItemSelected
                     true
                 }
                 else -> false
             }
         }
+        bottom_nav.selectedItemId = R.id.menu_search
+    }
+
+    private fun openFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
