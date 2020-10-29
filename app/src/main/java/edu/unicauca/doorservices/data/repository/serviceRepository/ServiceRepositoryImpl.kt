@@ -14,7 +14,8 @@ class ServiceRepositoryImpl : ServiceRepository {
     override suspend fun getServiceById(id: String): Service {
         val result = db.collection("Services").document(id).get().await()
 
-        TODO("new service")
+        TODO("return service")
+
 
     }
 

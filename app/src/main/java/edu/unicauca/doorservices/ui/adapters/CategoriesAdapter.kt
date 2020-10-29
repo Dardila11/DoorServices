@@ -1,14 +1,17 @@
 package edu.unicauca.doorservices.ui.adapters
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Category
-import kotlinx.android.synthetic.main.cardview_category.view.*
+import edu.unicauca.doorservices.ui.MainActivity
+import edu.unicauca.doorservices.ui.fragments.ServicesByCategoryFragment
 
 class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
@@ -39,6 +42,15 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
         holder.catTitle.text = categoriesList[position].categoryName
         holder.catDescription.text = categoriesList[position].categoryDescription
 
+        holder.itemView.setOnClickListener {
+            print(categoriesList[position].categoryId)
+            val ctx = holder.itemView.context
+            //Toast.makeText(ctx, categoriesList[position].categoryId, Toast.LENGTH_SHORT).show()
+            // TODO put categoryId inside fragment parameters
+            openFragment(ctx, ServicesByCategoryFragment.newInstance())
+
+        }
+
 
     }
 
@@ -46,6 +58,15 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
 
     companion object {
         private const val TAG = "CustomAdapter"
+    }
+
+
+    private fun openFragment(context: Context, fragment: Fragment){
+        val myActivityContext = context as MainActivity
+        val transaction = myActivityContext.supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 

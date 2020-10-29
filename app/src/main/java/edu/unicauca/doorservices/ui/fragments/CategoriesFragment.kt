@@ -31,7 +31,6 @@ class CategoriesFragment : Fragment(), CoroutineScope {
     private lateinit var myService: Service
 
     private var categoryRepositoryImpl = CategoryRepositoryImpl()
-    private var serviceRepositoryImpl = ServiceRepositoryImpl()
 
 
     override  fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +49,6 @@ class CategoriesFragment : Fragment(), CoroutineScope {
         lifecycleScope.launch {
             categoriesList = ArrayList()
             categoriesList = categoryRepositoryImpl.getAllCategories()
-
-            //myService = Service("1", "1", "1", "Mi nuevo servicio", "la descripción", "110000")
-            //serviceRepositoryImpl.createService(myService)
 
             recyclerView = rootView.findViewById(R.id.recycler_categories)
             layoutManager = LinearLayoutManager(activity)
