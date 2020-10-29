@@ -51,8 +51,8 @@ class CategoriesFragment : Fragment(), CoroutineScope {
             categoriesList = ArrayList()
             categoriesList = categoryRepositoryImpl.getAllCategories()
 
-            myService = Service("1", "1", "1", "Mi nuevo servicio", "la descripción", "110000")
-            serviceRepositoryImpl.createService(myService)
+            //myService = Service("1", "1", "1", "Mi nuevo servicio", "la descripción", "110000")
+            //serviceRepositoryImpl.createService(myService)
 
             recyclerView = rootView.findViewById(R.id.recycler_categories)
             layoutManager = LinearLayoutManager(activity)

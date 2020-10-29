@@ -11,4 +11,10 @@
     <string name="descripcion_de_la_categoria">descripcion de la categoria</string>
     <string name="hint_search">plomero, mecánico</string>
     <string name="client_address">Calle falsa 123</string>
+    <string name="message_auth">Ingrese su número de telefono para continuar con la solicitud del servicio</string>
+    <string name="hint_phone">3104562312</string>
+    <string name="message2_auth">También puedes ingresar usando</string>
+    <string name="hint_email">johndoe@gmail.com</string>
+    <string name="hint_password">johndoe123</string>
+    <string name="category_image">category_image</string>
 </resources>

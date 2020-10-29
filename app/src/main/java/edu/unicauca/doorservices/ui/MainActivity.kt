@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
+import edu.unicauca.doorservices.ui.fragments.AuthFragment
 import edu.unicauca.doorservices.ui.fragments.CategoriesFragment
 import edu.unicauca.doorservices.ui.fragments.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_my_orders -> {
+                    val fragment = AuthFragment.newInstance()
+                    openFragment(fragment)
                     true
                 }
                 else -> false

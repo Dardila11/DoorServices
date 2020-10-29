@@ -20,18 +20,11 @@ class ServiceRepositoryImpl : ServiceRepository {
 
     override suspend fun getAllServices(): ArrayList<Service> {
         val servicesList = ArrayList<Service>()
-        db.collection("Services")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents){
-                    val service = Service().fromMap(document.data)
-                    servicesList.add(service)
-                }
-            }
-            .addOnFailureListener {exception ->
-                Log.d("error", exception.toString())
-
-            }
+        val documents = db.collection("Services").get().await()
+        for (document in documents){
+            val service = Service().fromMap(document.data)
+            servicesList.add(service)
+        }
         return servicesList
     }
 

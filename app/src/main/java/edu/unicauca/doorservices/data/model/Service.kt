@@ -2,13 +2,13 @@ package edu.unicauca.doorservices.data.model
 
 
 class Service {
-
-      var serviceId: String = ""
-      var categoryId: String = ""
-      var userId: String = ""
-      var title: String = ""
-      var description: String = ""
-      var price: String = ""
+    var serviceId: String = ""
+    var categoryId: String = ""
+    var userId: String = ""
+    var title: String = ""
+    var description: String = ""
+    var price: String = ""
+    var rating: Int = -1    // 0 to 5
 
     constructor()
 
