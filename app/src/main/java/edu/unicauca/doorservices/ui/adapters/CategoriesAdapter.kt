@@ -1,6 +1,7 @@
 package edu.unicauca.doorservices.ui.adapters
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -47,11 +48,10 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
             val ctx = holder.itemView.context
             //Toast.makeText(ctx, categoriesList[position].categoryId, Toast.LENGTH_SHORT).show()
             // TODO put categoryId inside fragment parameters
-            openFragment(ctx, ServicesByCategoryFragment.newInstance())
+            val docCategoryId = categoriesList[position].docCategoryId
+            openFragment(ctx, ServicesByCategoryFragment.newInstance(docCategoryId))
 
         }
-
-
     }
 
     override fun getItemCount() = categoriesList.size
@@ -59,7 +59,6 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
     companion object {
         private const val TAG = "CustomAdapter"
     }
-
 
     private fun openFragment(context: Context, fragment: Fragment){
         val myActivityContext = context as MainActivity

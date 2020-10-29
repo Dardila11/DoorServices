@@ -24,6 +24,7 @@ class ServiceRepositoryImpl : ServiceRepository {
         val documents = db.collection("Services").get().await()
         for (document in documents){
             val service = Service().fromMap(document.data)
+            service.docServiceId = document.id
             servicesList.add(service)
         }
         return servicesList
@@ -32,12 +33,14 @@ class ServiceRepositoryImpl : ServiceRepository {
     override suspend fun getAllServicesByCategoryId(id: String): ArrayList<Service> {
         val servicesByCategoryList = ArrayList<Service>()
         val documents = db.collection("Services")
-            .whereEqualTo("category_id", id).get().await()
+            .whereEqualTo("category_id", id)
+            .get()
+            .await()
 
         for(document in documents) {
             val service = Service().fromMap(document.data)
+            service.docServiceId = document.id
             servicesByCategoryList.add(service)
-
         }
         return servicesByCategoryList
 

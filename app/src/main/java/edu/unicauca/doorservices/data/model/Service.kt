@@ -2,6 +2,8 @@ package edu.unicauca.doorservices.data.model
 
 
 class Service {
+
+    var docServiceId: String = ""
     var serviceId: String = ""
     var categoryId: String = ""
     var userId: String = ""

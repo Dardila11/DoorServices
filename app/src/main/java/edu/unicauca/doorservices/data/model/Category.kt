@@ -5,6 +5,11 @@ import java.util.*
 
 class Category {
 
+    /**
+     * docCategoryId is de ID of the document. which is different from
+     * the id of the category which is added inside the document
+     */
+    var docCategoryId: String = ""
     var categoryId: String  = ""
     var categoryName: String = ""
     var categoryDescription: String = ""
@@ -13,6 +18,13 @@ class Category {
     constructor()
 
     constructor(catId: String, catName: String, catDesc: String) {
+        this.categoryId = catId
+        this.categoryName = catName
+        this.categoryDescription = catDesc
+    }
+
+    constructor(docId: String,  catId: String, catName: String, catDesc: String) {
+        this.docCategoryId = docId
         this.categoryId = catId
         this.categoryName = catName
         this.categoryDescription = catDesc

@@ -20,7 +20,6 @@ class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerVi
 
         val servTitle: TextView
         val servPrice: TextView
-        val servImage: Image
 
         init {
             v.setOnClickListener {
@@ -30,7 +29,6 @@ class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerVi
 
             servTitle = v.findViewById(R.id.serv_title)
             servPrice = v.findViewById(R.id.serv_price)
-            servImage = v.findViewById(R.id.serv_image)
         }
 
     }
