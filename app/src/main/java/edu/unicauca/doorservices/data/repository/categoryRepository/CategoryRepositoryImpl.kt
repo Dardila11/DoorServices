@@ -19,7 +19,8 @@ class CategoryRepositoryImpl: CategoryRepository {
         val categories = ArrayList<Category>()
         val documents = db.collection("categories").get().await()
         for (document in documents) {
-            val category = Category(document.data["catId"] as String, document.data["name"] as String)
+            Log.d("document id", document.id)
+            val category = Category(document.id, document.data["catId"] as String, document.data["name"] as String, document.data["description"] as String)
             categories.add(category)
         }
         return categories

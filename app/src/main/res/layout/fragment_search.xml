@@ -1,45 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintBottom_toTopOf="parent"
     tools:context=".ui.fragments.SearchFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
         <TextView
-            android:id="@+id/title_txt"
+            android:id="@+id/client_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/los_mas_solicitado" />
+            android:layout_margin="10dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/client_address"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txt_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.gridlayout.widget.GridLayout
+        <EditText
+            android:id="@+id/txt_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="@string/hint_search"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/client_address"
+            android:autofillHints="" />
+
+        <ImageButton
+            android:id="@+id/btn_location"
+            android:layout_width="33dp"
+            android:layout_height="27dp"
+            android:layout_margin="2dp"
+            android:backgroundTint="#FFFFFF"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_baseline_location_on_16"
+            app:layout_constraintBottom_toTopOf="@+id/txt_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/client_address"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.484" />
+
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Lo más solicitado"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_search"
+            app:layout_constraintVertical_bias="0.062" />
 
-            >
-
-            <TextView
-                android:id="@+id/cat4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/los_mas_solicitado" />
-
-            <TextView
-                android:id="@+id/cat1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/los_mas_solicitado" />
-            <TextView
-                android:id="@+id/cat2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/los_mas_solicitado" />
-            <TextView
-                android:id="@+id/cat3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/los_mas_solicitado" />
-
-
-
-        </androidx.gridlayout.widget.GridLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
