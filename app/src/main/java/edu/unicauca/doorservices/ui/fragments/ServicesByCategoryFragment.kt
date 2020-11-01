@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,17 @@ class ServicesByCategoryFragment : Fragment(), CoroutineScope {
         arguments?.let {
             categoryId = it.getString("categoryId").toString()
         }
+
+    }
+
+    override fun onResume() {
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolBar)
+        toolbar?.title = "Servicios"
+        toolbar?.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        toolbar?.setNavigationOnClickListener {
+            activity?.onBackPressed()
+        }
+        super.onResume()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

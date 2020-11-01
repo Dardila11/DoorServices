@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import edu.unicauca.doorservices.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -21,6 +23,14 @@ class SearchFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+    }
+
+    override fun onResume() {
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolBar)
+        toolbar?.title = "Explorar"
+        toolbar?.navigationIcon = null
+        super.onResume()
     }
 
     override fun onCreateView(
@@ -34,7 +44,6 @@ class SearchFragment : Fragment() {
     companion object {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance() =
-            SearchFragment()
+        fun newInstance() = SearchFragment()
     }
 }

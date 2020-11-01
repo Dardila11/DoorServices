@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,7 @@ import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
 import edu.unicauca.doorservices.ui.adapters.CategoriesAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -33,14 +36,22 @@ class CategoriesFragment : Fragment(), CoroutineScope {
     private var categoryRepositoryImpl = CategoryRepositoryImpl()
 
 
+
     override  fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
+
+    override fun onResume() {
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolBar)
+        toolbar?.title = "Categorias"
+        toolbar?.navigationIcon = null
+        super.onResume()
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_categories, container, false)

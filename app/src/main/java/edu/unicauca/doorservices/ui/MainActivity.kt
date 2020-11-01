@@ -2,6 +2,7 @@ package edu.unicauca.doorservices.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
 import edu.unicauca.doorservices.R
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
+
 
         bottom_nav.setOnNavigationItemSelectedListener { item ->
 
@@ -41,6 +43,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         bottom_nav.selectedItemId = R.id.menu_search
+    }
+
+    fun getToolbar(){
+        this.toolBar
     }
 
     private fun openFragment(fragment: Fragment){

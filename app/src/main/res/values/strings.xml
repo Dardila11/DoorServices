@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DoorServices</string>
     <string name="category">Categorias</string>
-    <string name="search">Buscar</string>
+    <string name="explorar">Explorar</string>
     <string name="my_orders">Mis pedidos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
