@@ -12,7 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.ui.MainActivity
+import edu.unicauca.doorservices.ui.fragments.ServiceDetailFragment
 import edu.unicauca.doorservices.ui.fragments.ServicesByCategoryFragment
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerView.Adapter<ServicesAdapter.ViewHolder>() {
 
@@ -42,7 +46,7 @@ class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerVi
         Log.d(ServicesAdapter.TAG, "Element $position set.")
 
         holder.servTitle.text = servicesList[position].title
-        holder.servPrice.text = servicesList[position].price
+        holder.servPrice.text = toCurrencyFormat(servicesList[position].price)
 
 
         holder.itemView.setOnClickListener {
@@ -51,10 +55,20 @@ class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerVi
             //Toast.makeText(ctx, categoriesList[position].categoryId, Toast.LENGTH_SHORT).show()
             // TODO put serviceId inside fragment parameters
             // TODO create new Service fragment
-
-            //openFragment(ctx, ServicesByCategoryFragment.newInstance())
+            val docServiceId = servicesList[position].docServiceId
+            openFragment(ctx, ServiceDetailFragment.newInstance( docServiceId ))
 
         }
+    }
+
+    private fun toCurrencyFormat(number: String) : String {
+        val price = number.toInt()
+        val formattedNumber = NumberFormat.getCurrencyInstance()
+        formattedNumber.maximumFractionDigits = 0
+        formattedNumber.currency = Currency.getInstance("COP")
+        val fNumber = formattedNumber.format(price)
+        return fNumber.replace("COP", "$")
+
     }
 
     override fun getItemCount() = servicesList.size

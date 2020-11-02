@@ -1,6 +1,5 @@
 package edu.unicauca.doorservices.data.repository.serviceRepository
 
-import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import edu.unicauca.doorservices.data.model.Service
@@ -12,11 +11,22 @@ class ServiceRepositoryImpl : ServiceRepository {
     private val db = Firebase.firestore
 
     override suspend fun getServiceById(id: String): Service {
-        val result = db.collection("Services").document(id).get().await()
 
-        TODO("return service")
+        val document = db.collection("Services").document(id).get().await()
+        val service = Service()
 
+        val documentData = document.data
+        if (documentData != null) {
+            if(documentData.isNotEmpty()) {
+                service.title = documentData["title"] as String
+                service.description = documentData["description"] as String
+                service.price = documentData["price"] as String
+                service.docServiceId = id
+            }
 
+        }
+
+        return service
     }
 
     override suspend fun getAllServices(): ArrayList<Service> {

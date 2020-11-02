@@ -46,8 +46,6 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
         holder.itemView.setOnClickListener {
             print(categoriesList[position].categoryId)
             val ctx = holder.itemView.context
-            //Toast.makeText(ctx, categoriesList[position].categoryId, Toast.LENGTH_SHORT).show()
-            // TODO put categoryId inside fragment parameters
             val docCategoryId = categoriesList[position].docCategoryId
             openFragment(ctx, ServicesByCategoryFragment.newInstance(docCategoryId))
 
