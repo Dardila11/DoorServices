@@ -1,7 +1,5 @@
 package edu.unicauca.doorservices.data.model
 
-import java.util.*
-
 class Category {
 
     /**
@@ -34,16 +32,4 @@ class Category {
         this.categoryDescription = catDesc
     }
 
-}
-
-class CategoryImage {
-    var path: String = ""
-    lateinit var base64: Base64
-
-    constructor()
-
-    constructor(base64: Base64, path: String){
-        this.base64 = base64
-        this.path = path
-    }
 }

@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
-import edu.unicauca.doorservices.ui.fragments.AuthFragment
-import edu.unicauca.doorservices.ui.fragments.CategoriesFragment
-import edu.unicauca.doorservices.ui.fragments.ExploreFragment
-import edu.unicauca.doorservices.ui.fragments.SearchFragment
+import edu.unicauca.doorservices.ui.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +25,8 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.menu_profile -> {
                     Toast.makeText(this, "Opening profile", Toast.LENGTH_SHORT).show()
+                    val fragment = RequestServiceFragment.newInstance("1", "2")
+                    openFragment(fragment)
                     true
                 }
                 R.id.menu_search -> {
