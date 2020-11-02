@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Service
+import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
 import kotlinx.android.synthetic.main.cardview_service.serv_title
 import kotlinx.android.synthetic.main.fragment_service_detail.*
@@ -28,8 +30,10 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
     private var serviceId: String = ""
     private lateinit var job: Job
     private lateinit var service: Service
+    private  var email : String = ""
 
     private var serviceRepositoryImpl = ServiceRepositoryImpl()
+    private var authRepositoryImpl = AuthRepositoryImpl()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +64,18 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
             serv_description.text = service.description
             serv_price.text = toCurrencyFormat(service.price)
 
+            btn_request_service.setOnClickListener {
+                val user = authRepositoryImpl.getUser()
+                if(user != null) {
+                    Toast.makeText(activity, "User signed in ${user.email.toString()}", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity, "User not signed in", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
         }
+
         return rootView
     }
 
