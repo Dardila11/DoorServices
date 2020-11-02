@@ -17,6 +17,7 @@ import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
 import edu.unicauca.doorservices.ui.adapters.ServicesAdapter
+import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -66,6 +67,8 @@ class ServicesByCategoryFragment : Fragment(), CoroutineScope {
             layoutManager = LinearLayoutManager(activity)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = ServicesAdapter(servicesList)
+
+            progress_bar.visibility = View.GONE
         }
         return rootView
     }

@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +20,7 @@ import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepo
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
 import edu.unicauca.doorservices.ui.adapters.CategoriesAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -65,7 +69,12 @@ class CategoriesFragment : Fragment(), CoroutineScope {
             layoutManager = LinearLayoutManager(activity)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = CategoriesAdapter(categoriesList)
+
+            progress_bar.visibility = View.GONE
         }
+
+
+
 
         return rootView
     }

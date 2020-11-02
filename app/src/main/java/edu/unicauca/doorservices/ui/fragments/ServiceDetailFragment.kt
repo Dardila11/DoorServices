@@ -61,9 +61,6 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
             serv_price.text = toCurrencyFormat(service.price)
 
         }
-
-
-
         return rootView
     }
 
