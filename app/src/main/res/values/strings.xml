@@ -17,4 +17,5 @@
     <string name="hint_email">johndoe@gmail.com</string>
     <string name="hint_password">johndoe123</string>
     <string name="category_image">category_image</string>
+    <string name="profile">profile</string>
 </resources>
