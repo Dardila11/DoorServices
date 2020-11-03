@@ -24,6 +24,7 @@
             android:layout_marginTop="16dp"
             android:text="Cocinas Integrales"
             android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/serv_image"
             app:layout_constraintTop_toTopOf="parent" />
 
