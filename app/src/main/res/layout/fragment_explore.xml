@@ -31,17 +31,16 @@
             app:layout_constraintTop_toBottomOf="@+id/image">
         </ListView>
 
-        <ListView
-            android:id="@+id/listview_serv"
-            android:layout_width="441dp"
-            android:layout_height="161dp"
-            android:layout_marginTop="40dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="407dp"
+            android:layout_height="185dp"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listview_cat"
-           >
+            app:layout_constraintTop_toBottomOf="@+id/listview_cat" />
 
-        </ListView>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

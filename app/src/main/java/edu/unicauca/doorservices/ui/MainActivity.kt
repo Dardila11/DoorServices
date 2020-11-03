@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_search -> {
-                    val fragment = ExploreFragment.newInstance("hello", "hello")
+                    val fragment = ExploreFragment.newInstance()
                     openFragment(fragment)
                     true
                 }
