@@ -71,10 +71,18 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
                 if(user != null) {
                     Toast.makeText(activity, "User signed in ${user.email.toString()}", Toast.LENGTH_SHORT).show()
                     //openFragment(activity, RequestServiceFragment.newInstance("1", "2"))
+                    val transaction = activity?.supportFragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.main_container, RequestServiceFragment.newInstance("1", "2"))
+                    transaction?.addToBackStack(null)
+                    transaction?.commit()
 
 
                 } else {
                     Toast.makeText(activity, "User not signed in", Toast.LENGTH_SHORT).show()
+                    val transaction = activity?.supportFragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.main_container, AuthFragment.newInstance())
+                    transaction?.addToBackStack(null)
+                    transaction?.commit()
                 }
             }
 

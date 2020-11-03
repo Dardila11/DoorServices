@@ -30,7 +30,14 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
                     Toast.makeText(activity, "Los campos no pueden estar vacios", Toast.LENGTH_SHORT).show()
                 } else {
                     lifecycleScope.launch {
-                        authRepositoryImpl.signInWithEmailAndPassword(txt_email.text.toString(), txt_password.text.toString())
+                        val response = authRepositoryImpl.signInWithEmailAndPassword(txt_email.text.toString(), txt_password.text.toString())
+                        if(response?.user != null) {
+                            // open fragment
+                            val transaction = activity?.supportFragmentManager?.beginTransaction()
+                            transaction?.replace(R.id.main_container, RequestServiceFragment.newInstance("1", "2"))
+                            transaction?.addToBackStack(null)
+                            transaction?.commit()
+                        }
                     }
                 }
 
