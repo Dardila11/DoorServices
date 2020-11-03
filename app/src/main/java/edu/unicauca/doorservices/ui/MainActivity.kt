@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_search -> {
                     Toast.makeText(this, "Opening search", Toast.LENGTH_SHORT).show()
-                    val fragment = RequestServiceFragment.newInstance("1", "2")
-                    openFragment(fragment)
                     true
                 }
                 else -> false
@@ -55,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_my_orders -> {
-                    val fragment = AuthFragment.newInstance()
+                    val fragment = MyRequestsFragment.newInstance("1", "1")
                     openFragment(fragment)
                     true
                 }

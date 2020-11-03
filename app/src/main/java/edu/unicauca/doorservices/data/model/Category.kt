@@ -32,4 +32,11 @@ class Category {
         this.categoryDescription = catDesc
     }
 
+    constructor(docId: String,  catId: String, catName: String, catDesc: String, catImage: String) {
+        this.docCategoryId = docId
+        this.categoryId = catId
+        this.categoryName = catName
+        this.categoryDescription = catDesc
+        this.categoryImage = catImage
+    }
 }

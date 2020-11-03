@@ -2,6 +2,7 @@ package edu.unicauca.doorservices.data.repository.serviceRepository
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import edu.unicauca.doorservices.data.model.MyRequest
 import edu.unicauca.doorservices.data.model.Service
 import kotlinx.coroutines.tasks.await
 
@@ -75,5 +76,11 @@ class ServiceRepositoryImpl : ServiceRepository {
     override suspend fun deleteServiceById(servId: String) {
 
         val result = db.collection("Services").document(servId).delete().await()
+    }
+
+    override suspend fun requestService(myRequest: MyRequest) {
+        val map = myRequest.toMap()
+
+        val result = db.collection("service_requests").add(map).await()
     }
 }

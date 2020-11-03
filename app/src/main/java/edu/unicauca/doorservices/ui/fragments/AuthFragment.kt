@@ -19,6 +19,7 @@ import kotlin.coroutines.CoroutineContext
 
 class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
 
+    private var serviceId: String = ""
 
     private lateinit var job: Job
     private var authRepositoryImpl = AuthRepositoryImpl()
@@ -34,7 +35,7 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
                         if(response?.user != null) {
                             // open fragment
                             val transaction = activity?.supportFragmentManager?.beginTransaction()
-                            transaction?.replace(R.id.main_container, RequestServiceFragment.newInstance("1", "2"))
+                            transaction?.replace(R.id.main_container, RequestServiceFragment.newInstance(serviceId))
                             transaction?.addToBackStack(null)
                             transaction?.commit()
                         }
@@ -47,11 +48,13 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+            serviceId = it.getString("servId").toString()
+        }
         btn_sign_in.setOnClickListener(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle? ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         val view = inflater.inflate(R.layout.fragment_auth, container, false)
         job = Job()
         return view
@@ -64,7 +67,11 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
 
     companion object {
         @JvmStatic
-        fun newInstance() = AuthFragment()
+        fun newInstance(id: String) = AuthFragment().apply {
+            arguments = Bundle().apply {
+                putString("servId", serviceId)
+            }
+        }
     }
 
     override val coroutineContext: CoroutineContext

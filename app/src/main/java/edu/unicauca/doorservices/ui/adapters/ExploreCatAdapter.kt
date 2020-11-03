@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Category
 import edu.unicauca.doorservices.ui.MainActivity
@@ -18,6 +20,7 @@ class ExploreCatAdapter(private val categoriesList: ArrayList<Category>) : Recyc
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val catTitle: TextView
+        val catImage: ImageView
         // TODO add category image
         init {
             // Define click listener for the ViewHolder's View.
@@ -25,6 +28,7 @@ class ExploreCatAdapter(private val categoriesList: ArrayList<Category>) : Recyc
                 Log.d(TAG, "Element $adapterPosition clicked")
             }
             catTitle = v.findViewById(R.id.cat_title)
+            catImage = v.findViewById(R.id.cat_image)
         }
     }
 
@@ -49,9 +53,26 @@ class ExploreCatAdapter(private val categoriesList: ArrayList<Category>) : Recyc
         transaction.commit()
     }
 
+    fun setImage( title: String ): Int {
+        var drawable = R.drawable.plomeria
+        when(title){
+            "plomeria" -> {
+                drawable = R.drawable.plomeria
+            }
+            "Mecanico" -> {
+                drawable = R.drawable.mecanico
+            }
+        }
+        return drawable
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.catTitle.text = categoriesList[position].categoryName
+        Picasso.get()
+            .load(categoriesList[position].categoryImage)
+            .placeholder(R.drawable.cat_placeholder)
+            .into(holder.catImage)
 
         holder.itemView.setOnClickListener {
             print(categoriesList[position].categoryId)

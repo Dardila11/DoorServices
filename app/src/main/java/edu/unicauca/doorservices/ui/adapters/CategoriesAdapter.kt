@@ -6,9 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Category
 import edu.unicauca.doorservices.ui.MainActivity
@@ -19,6 +21,7 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val catTitle: TextView
         val catDescription: TextView
+        val catImage: ImageView
         // TODO add category image
         init {
             // Define click listener for the ViewHolder's View.
@@ -27,6 +30,7 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
             }
             catTitle = v.findViewById(R.id.cat_title)
             catDescription = v.findViewById(R.id.cat_description)
+            catImage = v.findViewById(R.id.cat_image)
         }
     }
 
@@ -42,6 +46,13 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
         Log.d(TAG, "Element $position set.")
         holder.catTitle.text = categoriesList[position].categoryName
         holder.catDescription.text = categoriesList[position].categoryDescription
+        //holder.catImage.setImageResource(setImage(categoriesList[position].categoryImage))
+
+        Picasso.get()
+            .load(categoriesList[position].categoryImage)
+            .placeholder(R.drawable.cat_placeholder)
+            .into(holder.catImage)
+
 
         holder.itemView.setOnClickListener {
             print(categoriesList[position].categoryId)
@@ -56,6 +67,19 @@ class CategoriesAdapter(private val categoriesList: ArrayList<Category>) : Recyc
 
     companion object {
         private const val TAG = "CustomAdapter"
+    }
+
+    fun setImage( title: String ): Int {
+        var drawable = R.drawable.plomeria
+        when(title){
+            "plomeria" -> {
+                drawable = R.drawable.plomeria
+            }
+            "Mecanico" -> {
+                drawable = R.drawable.mecanico
+            }
+        }
+        return drawable
     }
 
     private fun openFragment(context: Context, fragment: Fragment){

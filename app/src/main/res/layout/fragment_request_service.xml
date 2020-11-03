@@ -69,11 +69,12 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="Método de Pago"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.057"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_address" />
 
@@ -94,25 +95,28 @@
                 android:id="@+id/nequi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:paddingRight="10dp"
-                android:text="Nequi" />
+                android:layout_marginEnd="10dp"
+                android:paddingEnd="10dp"
+                android:text="Nequi"
+                />
 
             <RadioButton
                 android:id="@+id/daviplata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:paddingRight="10dp"
-                android:text="Daviplata" />
+                android:layout_marginEnd="10dp"
+                android:paddingEnd="10dp"
+                android:text="Daviplata"
+                />
 
             <RadioButton
                 android:id="@+id/cash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:paddingRight="10dp"
-                android:text="Efectivo" />
+                android:layout_marginEnd="10dp"
+                android:paddingEnd="10dp"
+                android:text="Efectivo"
+                />
 
         </RadioGroup>
 
@@ -143,7 +147,7 @@
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_send_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
