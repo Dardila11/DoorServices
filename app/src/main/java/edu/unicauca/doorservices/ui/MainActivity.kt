@@ -1,5 +1,7 @@
 package edu.unicauca.doorservices.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -25,12 +27,14 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.menu_profile -> {
                     Toast.makeText(this, "Opening profile", Toast.LENGTH_SHORT).show()
-                    val fragment = RequestServiceFragment.newInstance("1", "2")
-                    openFragment(fragment)
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.menu_search -> {
                     Toast.makeText(this, "Opening search", Toast.LENGTH_SHORT).show()
+                    val fragment = RequestServiceFragment.newInstance("1", "2")
+                    openFragment(fragment)
                     true
                 }
                 else -> false
