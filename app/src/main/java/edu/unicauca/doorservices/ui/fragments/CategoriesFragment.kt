@@ -71,6 +71,7 @@ class CategoriesFragment : Fragment(), CoroutineScope {
             recyclerView.adapter = CategoriesAdapter(categoriesList)
 
             progress_bar.visibility = View.GONE
+
         }
 
 
