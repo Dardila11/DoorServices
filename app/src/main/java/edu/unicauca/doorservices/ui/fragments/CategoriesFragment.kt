@@ -64,19 +64,12 @@ class CategoriesFragment : Fragment(), CoroutineScope {
         lifecycleScope.launch {
             categoriesList = ArrayList()
             categoriesList = categoryRepositoryImpl.getAllCategories()
-
             recyclerView = rootView.findViewById(R.id.recycler_categories)
             layoutManager = LinearLayoutManager(activity)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = CategoriesAdapter(categoriesList)
-
             progress_bar.visibility = View.GONE
-
         }
-
-
-
-
         return rootView
     }
 
@@ -84,14 +77,11 @@ class CategoriesFragment : Fragment(), CoroutineScope {
         super.onDestroy()
         job.cancel()
     }
-
-
     companion object {
         @JvmStatic
         fun newInstance() =
             CategoriesFragment()
     }
-
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 

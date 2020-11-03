@@ -13,6 +13,7 @@ import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Category
 import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
 import edu.unicauca.doorservices.ui.adapters.CategoriesAdapter
+import edu.unicauca.doorservices.ui.adapters.ExploreCatAdapter
 import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.android.synthetic.main.fragment_explore.*
 import kotlinx.coroutines.CoroutineScope
@@ -51,14 +52,10 @@ class ExploreFragment : Fragment(), CoroutineScope {
             categoriesList = categoryRepositoryImpl.getAllCategories()
 
             recyclerView = rootView.findViewById(R.id.recycler_categories)
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             recyclerView.layoutManager = layoutManager
-            recyclerView.adapter = CategoriesAdapter(categoriesList)
-
-
+            recyclerView.adapter = ExploreCatAdapter(categoriesList)
         }
-
-
         return rootView
     }
 

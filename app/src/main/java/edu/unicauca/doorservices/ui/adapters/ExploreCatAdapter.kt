@@ -1,4 +1,4 @@
-package edu.unicauca.doorservices.ui
+package edu.unicauca.doorservices.ui.adapters
 
 import android.content.Context
 import android.util.Log
@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Category
-import edu.unicauca.doorservices.ui.adapters.CategoriesAdapter
+import edu.unicauca.doorservices.ui.MainActivity
 import edu.unicauca.doorservices.ui.fragments.ServicesByCategoryFragment
 
-class ExploreCatAdapter(private val categoryList: ArrayList<Category>) : RecyclerView.Adapter<ExploreCatAdapter.ViewHolder>() {
+class ExploreCatAdapter(private val categoriesList: ArrayList<Category>) : RecyclerView.Adapter<ExploreCatAdapter.ViewHolder>() {
+
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val catTitle: TextView
-        val catDescription: TextView
         // TODO add category image
         init {
             // Define click listener for the ViewHolder's View.
@@ -25,7 +25,6 @@ class ExploreCatAdapter(private val categoryList: ArrayList<Category>) : Recycle
                 Log.d(TAG, "Element $adapterPosition clicked")
             }
             catTitle = v.findViewById(R.id.cat_title)
-            catDescription = v.findViewById(R.id.cat_description)
         }
     }
 
@@ -36,7 +35,7 @@ class ExploreCatAdapter(private val categoryList: ArrayList<Category>) : Recycle
         return ViewHolder(v)
     }
 
-    override fun getItemCount() = categoryList.size
+    override fun getItemCount() = categoriesList.size
 
     companion object {
         private const val TAG = "CustomAdapter"
@@ -51,6 +50,14 @@ class ExploreCatAdapter(private val categoryList: ArrayList<Category>) : Recycle
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+
+        holder.catTitle.text = categoriesList[position].categoryName
+
+        holder.itemView.setOnClickListener {
+            print(categoriesList[position].categoryId)
+            val ctx = holder.itemView.context
+            val docCategoryId = categoriesList[position].docCategoryId
+            openFragment(ctx, ServicesByCategoryFragment.newInstance(docCategoryId))
+        }
     }
 }
