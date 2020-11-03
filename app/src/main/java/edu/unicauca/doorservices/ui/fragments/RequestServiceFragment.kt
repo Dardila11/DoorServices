@@ -6,19 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
+import com.squareup.picasso.Picasso
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.MyRequest
 import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
-import kotlinx.android.synthetic.main.cardview_service.*
-import kotlinx.android.synthetic.main.cardview_service.serv_price
-import kotlinx.android.synthetic.main.cardview_service.serv_title
 import kotlinx.android.synthetic.main.fragment_request_service.*
-import kotlinx.android.synthetic.main.fragment_service_detail.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -28,12 +24,12 @@ import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 
-class RequestServiceFragment : Fragment(), CoroutineScope, View.OnClickListener {
+class RequestServiceFragment : Fragment(), CoroutineScope {
 
     private var serviceId: String = ""
     private lateinit var job: Job
     private lateinit var service: Service
-    private lateinit var request: MyRequest
+    private var request = MyRequest()
     private  var email : String = ""
 
     private var serviceRepositoryImpl = ServiceRepositoryImpl()
@@ -80,22 +76,33 @@ class RequestServiceFragment : Fragment(), CoroutineScope, View.OnClickListener 
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        btn_send_request.setOnClickListener(this)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_request_service, container, false)
 
         job = Job()
 
         lifecycleScope.launch {
-            //service = serviceRepositoryImpl.getServiceById(serviceId)
+            service = serviceRepositoryImpl.getServiceById(serviceId)
 
-            //serv_title.text = service.title
-            //serv_description.text = service.description
-            //serv_price.text = toCurrencyFormat(service.price
+            serv_title.text = service.title
+            serv_description.text = service.description
+            serv_price.text = toCurrencyFormat(service.price)
+
+            Picasso.get()
+                .load(service.image)
+                .placeholder(R.drawable.cat_placeholder)
+                .into(serv_image)
+
+            btn_send_request.setOnClickListener {
+                lifecycleScope.launch {
+
+                    request.docServiceId = "1"
+                    request.service_price = "10000"
+                    request.docUserId = "2"
+                    serviceRepositoryImpl.requestService(request)
+                    Toast.makeText(activity, "Solicitud enviada con exito", Toast.LENGTH_SHORT).show()
+                }
+            }
 
         }
         return rootView
@@ -113,14 +120,13 @@ class RequestServiceFragment : Fragment(), CoroutineScope, View.OnClickListener 
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String) =
+        fun newInstance(serviceId: String) =
             RequestServiceFragment().apply {
                 arguments = Bundle().apply {
                     putString("servId", serviceId)
                 }
             }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
@@ -128,21 +134,4 @@ class RequestServiceFragment : Fragment(), CoroutineScope, View.OnClickListener 
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
-
-    override fun onClick(view: View?) {
-        when(view?.id) {
-            R.id.btn_send_request -> {
-
-                lifecycleScope.launch {
-
-                    request.docServiceId = "1"
-                    request.service_price = "10000"
-                    request.docUserId = "2"
-                    serviceRepositoryImpl.requestService(request)
-                    Toast.makeText(activity, "Solicitud enviada con exito", Toast.LENGTH_SHORT).show()
-                }
-
-            }
-        }
-    }
 }

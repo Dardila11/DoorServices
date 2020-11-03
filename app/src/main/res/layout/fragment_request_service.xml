@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="60dp"
-            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/serv_image"
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="56dp"
-            android:text="TextView"
+            android:textColor="@color/colorPrimaryText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/serv_image"
@@ -56,25 +57,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/serv_image" />
 
+
         <Spinner
             android:id="@+id/user_address"
             android:layout_width="229dp"
             android:layout_height="23dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:layout_editor_absoluteX="24dp" />
-
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.131"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="Método de Pago"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.057"
+            app:layout_constraintHorizontal_bias="0.086"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_address" />
 
@@ -82,7 +85,7 @@
             android:id="@+id/radioGroup"
             android:layout_width="374dp"
             android:layout_height="39dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:checkedButton="@id/cash"
             android:layoutMode="clipBounds"
             android:orientation="horizontal"
@@ -97,8 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:paddingEnd="10dp"
-                android:text="Nequi"
-                />
+                android:text="Nequi" />
 
             <RadioButton
                 android:id="@+id/daviplata"
@@ -106,8 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:paddingEnd="10dp"
-                android:text="Daviplata"
-                />
+                android:text="Daviplata" />
 
             <RadioButton
                 android:id="@+id/cash"
@@ -115,8 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:paddingEnd="10dp"
-                android:text="Efectivo"
-                />
+                android:text="Efectivo" />
 
         </RadioGroup>
 

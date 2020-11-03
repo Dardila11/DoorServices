@@ -55,8 +55,7 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
         }
         super.onResume()
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_service_detail, container, false)
         job = Job()
@@ -135,4 +134,5 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
+
 }
