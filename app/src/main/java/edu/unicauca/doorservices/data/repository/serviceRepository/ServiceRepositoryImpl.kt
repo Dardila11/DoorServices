@@ -22,6 +22,7 @@ class ServiceRepositoryImpl : ServiceRepository {
                 service.title = documentData["title"] as String
                 service.description = documentData["description"] as String
                 service.price = documentData["price"] as String
+                service.image = document["image"] as String
                 service.docServiceId = id
             }
 
@@ -49,7 +50,7 @@ class ServiceRepositoryImpl : ServiceRepository {
             .await()
 
         for(document in documents) {
-            val service = Service().fromMap(document.data)
+            val service = Service().fromMapWithImage(document.data)
             service.docServiceId = document.id
             servicesByCategoryList.add(service)
         }

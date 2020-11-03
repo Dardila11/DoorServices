@@ -10,7 +10,8 @@ class Service {
     var title: String = ""
     var description: String = ""
     var price: String = ""
-    var rating: Int = -1    // 0 to 5
+    var rating: Int = -1
+    var image: String = ""
 
     constructor()
 
@@ -21,6 +22,17 @@ class Service {
         this.title = servTitle
         this.description = servDescription
         this.price = servPrice
+
+    }
+
+    constructor(servId: String, catId: String, userId: String, servTitle: String,servDescription: String,servPrice: String, servImage: String) {
+        this.serviceId = servId
+        this.categoryId = catId
+        this.userId = userId
+        this.title = servTitle
+        this.description = servDescription
+        this.price = servPrice
+        this.image = servImage
 
     }
 
@@ -39,6 +51,18 @@ class Service {
         val categoryId        = map["category_id"] as String
 
         return Service(servId,categoryId,userId,servTitle,servDescription,servPrice)
+    }
+
+    fun fromMapWithImage(map: MutableMap<String, Any>) : Service {
+        val servTitle         = map["title"] as String
+        val servDescription   = map["description"] as String
+        val servPrice         = map["price"] as String
+        val servId            = map["serv_id"] as String
+        val userId            = map["user_id"] as String
+        val categoryId        = map["category_id"] as String
+        val servImage        = map["image"] as String
+
+        return Service(servId,categoryId,userId,servTitle,servDescription,servPrice, servImage)
     }
 
     /**

@@ -23,6 +23,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:text="Cocinas Integrales"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toEndOf="@+id/serv_image"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +34,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="16dp"
             android:text="Precio:"
+            android:textColor="@color/colorPrimaryText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/serv_image" />
 
@@ -42,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/colorPrimaryText"
             android:text="$15000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView5" />

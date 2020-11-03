@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
+import com.squareup.picasso.Picasso
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
@@ -65,6 +66,11 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
             serv_title.text = service.title
             serv_description.text = service.description
             serv_price.text = toCurrencyFormat(service.price)
+
+            Picasso.get()
+                .load(service.image)
+                .placeholder(R.drawable.cat_placeholder)
+                .into(serv_image)
 
             btn_request_service.setOnClickListener {
                 val user = authRepositoryImpl.getUser()

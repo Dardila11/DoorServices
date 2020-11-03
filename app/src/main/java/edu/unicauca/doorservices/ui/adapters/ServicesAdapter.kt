@@ -6,9 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.ui.MainActivity
@@ -24,6 +26,7 @@ class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerVi
 
         val servTitle: TextView
         val servPrice: TextView
+        val servImage: ImageView
 
         init {
             v.setOnClickListener {
@@ -33,6 +36,7 @@ class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerVi
 
             servTitle = v.findViewById(R.id.serv_title)
             servPrice = v.findViewById(R.id.serv_price)
+            servImage = v.findViewById(R.id.serv_image)
         }
 
     }
@@ -47,6 +51,12 @@ class ServicesAdapter(private val servicesList: ArrayList<Service>) : RecyclerVi
 
         holder.servTitle.text = servicesList[position].title
         holder.servPrice.text = toCurrencyFormat(servicesList[position].price)
+
+        Picasso.get()
+            .load(servicesList[position].image)
+            .placeholder(R.drawable.cat_placeholder)
+            .into(holder.servImage)
+
 
 
         holder.itemView.setOnClickListener {
