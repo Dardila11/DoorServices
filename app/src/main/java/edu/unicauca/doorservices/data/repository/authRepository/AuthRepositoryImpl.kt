@@ -2,6 +2,7 @@ package edu.unicauca.doorservices.data.repository.authRepository
 
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -29,12 +30,13 @@ class AuthRepositoryImpl : AuthRepository {
         }
     }
 
-    override suspend fun getUser() {
+    override  fun getUser() : FirebaseUser? {
+        return user
+    }
+
+    override fun signOut() {
         if(user != null) {
-            print(user.email)
-        } else {
-            print("User is not signed in")
+        auth.signOut()
         }
-        TODO("What will it return ?")
     }
 }
