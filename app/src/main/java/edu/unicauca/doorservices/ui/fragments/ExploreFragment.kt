@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.Category
 import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
-import edu.unicauca.doorservices.ui.adapters.CategoriesAdapter
 import edu.unicauca.doorservices.ui.adapters.ExploreCatAdapter
-import kotlinx.android.synthetic.main.fragment_categories.*
 import kotlinx.android.synthetic.main.fragment_explore.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,9 +50,11 @@ class ExploreFragment : Fragment(), CoroutineScope {
             categoriesList = categoryRepositoryImpl.getAllCategories()
 
             recyclerView = rootView.findViewById(R.id.recycler_categories)
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            //layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = GridLayoutManager(activity,2, GridLayoutManager.HORIZONTAL, false)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = ExploreCatAdapter(categoriesList)
+            progress_bar.visibility = View.GONE
         }
         return rootView
     }
