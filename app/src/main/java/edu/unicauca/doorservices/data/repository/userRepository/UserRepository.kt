@@ -5,6 +5,6 @@ import edu.unicauca.doorservices.data.model.UserProfileData
 interface UserRepository {
 
     fun createUser(name: String, email: String)
-    fun createProfileData( userProfileData: UserProfileData )
+    suspend fun createProfileData( userProfileData: UserProfileData, userId: String )
     fun getUserById( id: String ) : UserProfileData
 }

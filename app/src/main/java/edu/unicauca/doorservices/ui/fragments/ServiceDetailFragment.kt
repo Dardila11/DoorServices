@@ -33,7 +33,7 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
     private var serviceId: String = ""
     private lateinit var job: Job
     private lateinit var service: Service
-    private  var email : String = ""
+    private var email : String = ""
 
     private var serviceRepositoryImpl = ServiceRepositoryImpl()
     private var authRepositoryImpl = AuthRepositoryImpl()
