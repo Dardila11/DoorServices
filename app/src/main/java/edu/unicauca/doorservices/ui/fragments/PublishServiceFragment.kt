@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import edu.unicauca.doorservices.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,6 +22,16 @@ class PublishServiceFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    override fun onResume() {
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolBar)
+        toolbar?.title = "Publicar"
+        toolbar?.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        toolbar?.setNavigationOnClickListener {
+            activity?.onBackPressed()
+        }
+        super.onResume()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

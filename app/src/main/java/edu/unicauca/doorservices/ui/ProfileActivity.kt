@@ -6,11 +6,13 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.widget.TooltipCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.UserProfileData
 import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
 import edu.unicauca.doorservices.data.repository.userRepository.UserRepositoryImpl
+import edu.unicauca.doorservices.ui.fragments.PublishServiceFragment
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.content_profile.*
 import kotlinx.android.synthetic.main.fragment_auth.*
@@ -72,9 +74,20 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
         fab.setOnClickListener {
             // check if user has profile
             // if it does, open fragment to create a service
+            //val fragment = PublishServiceFragment.newInstance("1", "1");
+            //openFragment(fragment)
             // else
             // show text "you neeed to create profiledata"
+            Snackbar.make(it, "Funcionalidad no integrada", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show()
         }
+    }
+
+    private fun openFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     override fun onDestroy() {

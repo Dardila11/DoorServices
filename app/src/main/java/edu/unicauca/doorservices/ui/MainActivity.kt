@@ -26,13 +26,14 @@ class MainActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener {item ->
             when(item.itemId) {
                 R.id.menu_profile -> {
-                    Toast.makeText(this, "Opening profile", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent)
                     true
                 }
-                R.id.menu_search -> {
-                    Toast.makeText(this, "Opening search", Toast.LENGTH_SHORT).show()
+                R.id.menu_publish -> {
+                    //Toast.makeText(this, "Opening search", Toast.LENGTH_SHORT).show()
+                    val fragment = PublishServiceFragment.newInstance("1", "2")
+                    openFragment(fragment)
                     true
                 }
                 else -> false
@@ -53,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_my_orders -> {
-                    val fragment = MyRequestsFragment.newInstance("1", "1")
+                    //val fragment = MyRequestsFragment.newInstance("1", "1")
+                    val fragment = PublishServiceFragment.newInstance("1", "2")
                     openFragment(fragment)
                     true
                 }
