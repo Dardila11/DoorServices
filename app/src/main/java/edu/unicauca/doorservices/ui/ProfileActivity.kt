@@ -5,12 +5,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.widget.TooltipCompat
 import androidx.lifecycle.lifecycleScope
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.UserProfileData
 import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
 import edu.unicauca.doorservices.data.repository.userRepository.UserRepositoryImpl
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.content_profile.*
+import kotlinx.android.synthetic.main.fragment_auth.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -41,6 +44,10 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
         setSupportActionBar(findViewById(R.id.toolbar))
         job = Job()
 
+        // if profile data exists
+        // put data into text inputs
+
+
 
         btn_userInfo.setOnClickListener{
             lifecycleScope.launch {
@@ -56,15 +63,17 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
                 Snackbar.make(it, authRepositoryImpl.getUser()?.email.toString(), Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
 
-                userRepositoryImpl.createProfileData(userProfileData, authRepositoryImpl.getUser()?.uid.toString())
+                var result = userRepositoryImpl.createProfileData(userProfileData, authRepositoryImpl.getUser()?.uid.toString())
+
             }
         }
 
-
-
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        TooltipCompat.setTooltipText(fab, "Publicar Servicio")
+        fab.setOnClickListener {
+            // check if user has profile
+            // if it does, open fragment to create a service
+            // else
+            // show text "you neeed to create profiledata"
         }
     }
 

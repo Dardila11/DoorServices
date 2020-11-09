@@ -9,11 +9,13 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.model.MyRequest
 import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_request_service.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -101,6 +103,11 @@ class RequestServiceFragment : Fragment(), CoroutineScope {
                     request.docUserId = "2"
                     serviceRepositoryImpl.requestService(request)
                     Toast.makeText(activity, "Solicitud enviada con exito", Toast.LENGTH_SHORT).show()
+
+                    /*Snackbar.make(it, "Solicitud enviada con exito", Snackbar.LENGTH_SHORT)
+                        .setAnchorView(bottom_nav)
+                        .setAction("Action", null)
+                        .show()*/
                 }
             }
 

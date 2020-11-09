@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.snackbar.Snackbar
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
 import kotlinx.android.synthetic.main.fragment_auth.*
@@ -29,7 +29,9 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
         when(view?.id) {
             R.id.btn_sign_in -> {
                 if( txt_email.text.toString().isEmpty() || txt_password.text.toString().isEmpty() ){
-                    Toast.makeText(activity, "Los campos no pueden estar vacios", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(activity, "Los campos no pueden estar vacios", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(view,"Los campos no pueden estar vacios", Snackbar.LENGTH_SHORT)
+                        .setAction("action",null).show();
                 } else {
                     lifecycleScope.launch {
                         val response = authRepositoryImpl.signInWithEmailAndPassword(txt_email.text.toString(), txt_password.text.toString())

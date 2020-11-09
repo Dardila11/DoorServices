@@ -18,6 +18,8 @@ class UserRepositoryImpl: UserRepository {
         val result = db.collection("users")
             .add(map)
             .await()
+        // check result.
+
     }
 
     override fun getUserById(id: String): UserProfileData {
