@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_my_orders -> {
-                    //val fragment = MyRequestsFragment.newInstance("1", "1")
-                    val fragment = PublishServiceFragment.newInstance("1", "2")
+                    val fragment = MyRequestsFragment.newInstance("1", "1")
+                    //val fragment = PublishServiceFragment.newInstance("1", "2")
                     openFragment(fragment)
                     true
                 }
