@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
 import edu.unicauca.doorservices.R
+import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
 import edu.unicauca.doorservices.ui.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,12 +17,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val serviceRepositoryImpl = ServiceRepositoryImpl()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
-
+        val authRepositoryImpl = AuthRepositoryImpl()
         val toolbar: Toolbar = findViewById(R.id.toolBar)
+
+
 
         toolbar.setOnMenuItemClickListener {item ->
             when(item.itemId) {
@@ -31,9 +35,17 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_publish -> {
-                    //Toast.makeText(this, "Opening search", Toast.LENGTH_SHORT).show()
-                    val fragment = PublishServiceFragment.newInstance("1", "2")
-                    openFragment(fragment)
+                    if(authRepositoryImpl.getUser() != null) {
+                        // If user doesnt have profile data
+                        // show profile data page
+                        // otherwise
+                        // show publish service page
+                        val fragment = PublishServiceFragment.newInstance("1", "2")
+                        openFragment(fragment)
+                    } else {
+                        val fragment = AuthFragment.newInstance("1", )
+                        openFragment(fragment)
+                    }
                     true
                 }
                 else -> false

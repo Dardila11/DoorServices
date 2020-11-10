@@ -34,16 +34,25 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
                         .setAction("action",null).show();
                 } else {
                     lifecycleScope.launch {
-                        val response = authRepositoryImpl.signInWithEmailAndPassword(txt_email.text.toString(), txt_password.text.toString())
-                        if(response?.user != null) {
-                            // open fragment
-                            val transaction = activity?.supportFragmentManager?.beginTransaction()
-                            transaction?.replace(R.id.main_container, RequestServiceFragment.newInstance(serviceId))
-                            transaction?.addToBackStack(null)
-                            transaction?.commit()
+                        try {
+                            val response = authRepositoryImpl.signInWithEmailAndPassword(txt_email.text.toString(), txt_password.text.toString())
+
+                            if(response?.user != null) {
+                                // open fragment
+                                Snackbar.make(view,"Ha ingresado correctamente", Snackbar.LENGTH_SHORT)
+                                    .setAction("action",null).show();
+                            }
+                        } catch(e: Exception) {
+                            Snackbar.make(view,"Ha ocurrido un error", Snackbar.LENGTH_SHORT)
+                                .setAction("action",null).show();
+                        }
+
+                            //val transaction = activity?.supportFragmentManager?.beginTransaction()
+                            //transaction?.replace(R.id.main_container, RequestServiceFragment.newInstance(serviceId))
+                            //transaction?.addToBackStack(null)
+                            //transaction?.commit()
                         }
                     }
-                }
 
             }
         }
@@ -72,7 +81,7 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
 
     companion object {
         @JvmStatic
-        fun newInstance(id: String) = AuthFragment().apply {
+        fun newInstance(id: String ) = AuthFragment().apply {
             arguments = Bundle().apply {
                 putString("servId", serviceId)
             }
