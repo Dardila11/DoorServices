@@ -22,9 +22,44 @@ class UserRepositoryImpl: UserRepository {
 
     }
 
-    override fun getUserById(id: String): UserProfileData {
-        TODO("Not yet implemented")
+    override suspend fun getProfileDataById(userId: String): UserProfileData {
+        val documents=db.collection("users").get().await()
+
     }
+
+    override suspend fun hasProfileData(id: String): Boolean {
+        var hasProfile=true
+        val documents=db.collection("users")
+            .whereEqualTo("userId",id)
+            .get().await()
+        if(documents.isEmpty){
+            hasProfile=false
+
+        }
+        return hasProfile
+    }
+
+    override suspend fun getUserById(id: String): UserProfileData {
+        val documents=db.collection("users")
+            .whereEqualTo("userId",id)
+            .get().await()
+        val userProfileData=UserProfileData()
+        for(document in documents){
+            val documentData=document.data
+            userProfileData.firstName=documentData["firstname"] as String
+            userProfileData.lastName=documentData["lastname"] as String
+            userProfileData.address=documentData["address"] as String
+            userProfileData.legalId=documentData["legalId"] as String
+            userProfileData.neighborhood=documentData["neighborhood"] as String
+            userProfileData.phone=documentData["phone"] as String
+        }
+        return userProfileData
+    }
+
+
+
+
+
 
 
 }
