@@ -77,7 +77,8 @@ class Service {
             "price" to price,
             "category_id" to categoryId,
             "user_id" to userId,
-            "serv_id" to serviceId
+            "serv_id" to serviceId,
+            "image" to image
         )
     }
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
@@ -14,6 +15,7 @@ import edu.unicauca.doorservices.data.model.Service
 import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
 import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
 import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
+import kotlinx.android.synthetic.main.fragment_publish_service.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -33,8 +35,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PublishServiceFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-
-class PublishServiceFragment : Fragment(), CoroutineScope {
+public  class PublishServiceFragment : Fragment(), CoroutineScope {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -44,9 +45,11 @@ class PublishServiceFragment : Fragment(), CoroutineScope {
     private var categoryRepositoryImpl=CategoryRepositoryImpl()
     private var authRepositoryImpl=AuthRepositoryImpl()
     private lateinit var service: Service
+    val image ="https://firebasestorage.googleapis.com/v0/b/doorservices-uni.appspot.com/o/plomeria.png?alt=media&token=8765a66a-b279-4a50-924e-1505553cc0c5"
 
 
     override fun onResume() {
+        super.onResume()
         val toolbar: Toolbar? = activity?.findViewById(R.id.toolBar)
         toolbar?.title = "Publicar"
         toolbar?.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
@@ -54,8 +57,8 @@ class PublishServiceFragment : Fragment(), CoroutineScope {
             activity?.onBackPressed()
         }
         super.onResume()
-    }
 
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -63,14 +66,44 @@ class PublishServiceFragment : Fragment(), CoroutineScope {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+    override fun onViewCreated(view: View, savedIntanceState:Bundle?){
+        super.onViewCreated(view,savedIntanceState)
+        val categories= arrayOf("plomeria", "Cuidado personal","Mecanico","Carpinteria","Jardineria")
+        val adapter=ArrayAdapter(view.context,R.layout.dropdown_menu_popup_item,categories)
+        txt_category.setAdapter(adapter)
+            btn_publish.setOnClickListener{
+                var catId=""
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+                lifecycleScope.launch{
+                try{
+
+                    catId=categoryRepositoryImpl.getCategoryIdByName(txt_category.text.toString())
+                    Snackbar.make(it,catId,Snackbar.LENGTH_SHORT)
+                        .setAction("Action",null).show()
+                }catch(e:Exception){
+                    Snackbar.make(it,"Hubo un error",Snackbar.LENGTH_SHORT)
+                        .setAction("Action",null).show()
+                }
+                try{
+                    service=Service("2", catId,authRepositoryImpl.getUser()?.uid.toString(),
+                        txt_title.text.toString(),txt_description.text.toString(),txt_price.text.toString(),image)
+                    val result=serviceRepositoryImpl.createService(service)
+                    Snackbar.make(it,"Datos Guardados correctamente",Snackbar.LENGTH_SHORT)
+                        .setAction("Action",null).show()
+
+                }catch (e:Exception){
+                    Snackbar.make(it,"Hubo un error",Snackbar.LENGTH_SHORT)
+                        .setAction("Action",null).show()
+                }
+
+            }
+        }
+    }
+    fun onCreatedView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View?{
+
         val rootView= inflater.inflate(R.layout.fragment_publish_service,container,false)
         job= Job()
+        val categories = arrayOf("plomeria", "Cuidado personal","Mecanico", "Carpinteria","Jardineria")
         return rootView
     }
 
@@ -93,6 +126,14 @@ class PublishServiceFragment : Fragment(), CoroutineScope {
                 }
             }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
+    }
+    override val coroutineContext: CoroutineContext
+        get()=Dispatchers.Main + job
+
 
 
 }
