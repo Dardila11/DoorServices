@@ -49,6 +49,9 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
                                 if(intent  == "profile"){
                                     val intent1 = Intent(activity,ProfileActivity::class.java)
                                     startActivity(intent1)
+                                } else if (intent ==  "request"){
+                                    activity?.onBackPressed()
+
                                 }
                             }
                         } catch(e: Exception) {
