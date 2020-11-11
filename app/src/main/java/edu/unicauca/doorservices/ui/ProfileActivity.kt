@@ -62,7 +62,7 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
                     txt_phone.text.toString())
 
 
-                Snackbar.make(it, authRepositoryImpl.getUser()?.email.toString(), Snackbar.LENGTH_SHORT)
+                Snackbar.make(it, "Datos guardados correctamente", Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show()
 
                 var result = userRepositoryImpl.createProfileData(userProfileData, authRepositoryImpl.getUser()?.uid.toString())

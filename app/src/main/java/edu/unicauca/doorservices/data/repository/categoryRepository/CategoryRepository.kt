@@ -6,5 +6,7 @@ interface CategoryRepository {
 
     fun getCategoryById(id: String)
     suspend fun  getAllCategories(): ArrayList<Category>
+    suspend fun  getCategoryIdByName(catName: String) : String
+
 
 }

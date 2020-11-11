@@ -85,7 +85,7 @@ class ServiceDetailFragment : Fragment(), CoroutineScope {
                 } else {
                     Toast.makeText(activity, "User not signed in", Toast.LENGTH_SHORT).show()
                     val transaction = activity?.supportFragmentManager?.beginTransaction()
-                    transaction?.replace(R.id.main_container, AuthFragment.newInstance(serviceId))
+                    transaction?.replace(R.id.main_container, AuthFragment.newInstance("request"))
                     transaction?.addToBackStack(null)
                     transaction?.commit()
                 }

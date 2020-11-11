@@ -25,4 +25,15 @@ class CategoryRepositoryImpl: CategoryRepository {
         }
         return categories
     }
+
+    override suspend fun getCategoryIdByName(catName: String): String {
+        var categoryId =""
+        val documents=db.collection("categories")
+            .whereEqualTo("name",catName)
+            .get().await()
+        for(document in documents){
+            categoryId=document.id
+        }
+        return categoryId
+    }
 }

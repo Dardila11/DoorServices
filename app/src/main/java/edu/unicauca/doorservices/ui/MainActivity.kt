@@ -30,8 +30,17 @@ class MainActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener {item ->
             when(item.itemId) {
                 R.id.menu_profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+
+
+                    if(authRepositoryImpl.getUser()== null){
+                        val fragment= AuthFragment.newInstance("profile")
+                        openFragment(fragment)
+
+                    }else {
+                        val intent=Intent(this, ProfileActivity::class.java)
+                        startActivity(intent)
+
+                    }
                     true
                 }
                 R.id.menu_publish -> {
@@ -43,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                         val fragment = PublishServiceFragment.newInstance("1", "2")
                         openFragment(fragment)
                     } else {
-                        val fragment = AuthFragment.newInstance("1", )
+                        val fragment = AuthFragment.newInstance("1" )
                         openFragment(fragment)
                     }
                     true

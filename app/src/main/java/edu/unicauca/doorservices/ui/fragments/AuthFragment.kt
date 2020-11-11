@@ -1,15 +1,19 @@
 package edu.unicauca.doorservices.ui.fragments
 
+
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import edu.unicauca.doorservices.R
 import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
+import edu.unicauca.doorservices.ui.ProfileActivity
 import kotlinx.android.synthetic.main.fragment_auth.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +24,8 @@ import kotlin.coroutines.CoroutineContext
 
 class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
 
-    private var serviceId: String = ""
+
+    private var intent: String = ""
 
     private lateinit var job: Job
     private var authRepositoryImpl = AuthRepositoryImpl()
@@ -41,6 +46,13 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
                                 // open fragment
                                 Snackbar.make(view,"Ha ingresado correctamente", Snackbar.LENGTH_SHORT)
                                     .setAction("action",null).show();
+                                if(intent  == "profile"){
+                                    val intent1 = Intent(activity,ProfileActivity::class.java)
+                                    startActivity(intent1)
+                                } else if (intent ==  "request"){
+                                    activity?.onBackPressed()
+
+                                }
                             }
                         } catch(e: Exception) {
                             Snackbar.make(view,"Ha ocurrido un error", Snackbar.LENGTH_SHORT)
@@ -61,7 +73,8 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            serviceId = it.getString("servId").toString()
+
+            intent=it.getString("servId").toString()
         }
         btn_sign_in.setOnClickListener(this)
     }
@@ -83,7 +96,7 @@ class AuthFragment : Fragment(), CoroutineScope, View.OnClickListener {
         @JvmStatic
         fun newInstance(id: String ) = AuthFragment().apply {
             arguments = Bundle().apply {
-                putString("servId", serviceId)
+                putString("servId", id)
             }
         }
     }
