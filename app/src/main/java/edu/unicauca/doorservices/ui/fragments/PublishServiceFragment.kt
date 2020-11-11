@@ -1,12 +1,27 @@
 package edu.unicauca.doorservices.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import edu.unicauca.doorservices.R
+import edu.unicauca.doorservices.data.model.Service
+import edu.unicauca.doorservices.data.repository.authRepository.AuthRepositoryImpl
+import edu.unicauca.doorservices.data.repository.categoryRepository.CategoryRepositoryImpl
+import edu.unicauca.doorservices.data.repository.serviceRepository.ServiceRepositoryImpl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import java.lang.Exception
+
+import kotlin.coroutines.CoroutineContext
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,10 +33,18 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PublishServiceFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PublishServiceFragment : Fragment() {
+
+class PublishServiceFragment : Fragment(), CoroutineScope {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var job:Job
+    private var serviceRepositoryImpl=ServiceRepositoryImpl()
+    private var categoryRepositoryImpl=CategoryRepositoryImpl()
+    private var authRepositoryImpl=AuthRepositoryImpl()
+    private lateinit var service: Service
+
 
     override fun onResume() {
         val toolbar: Toolbar? = activity?.findViewById(R.id.toolBar)
@@ -46,7 +69,9 @@ class PublishServiceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_publish_service, container, false)
+        val rootView= inflater.inflate(R.layout.fragment_publish_service,container,false)
+        job= Job()
+        return rootView
     }
 
     companion object {
@@ -68,4 +93,6 @@ class PublishServiceFragment : Fragment() {
                 }
             }
     }
+
+
 }
