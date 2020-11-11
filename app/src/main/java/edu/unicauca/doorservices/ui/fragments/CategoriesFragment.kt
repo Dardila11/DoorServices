@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.SearchView
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
@@ -36,6 +37,7 @@ class CategoriesFragment : Fragment(), CoroutineScope {
     private lateinit var categoriesList : ArrayList<Category>
     private lateinit var job:Job
     private lateinit var myService: Service
+    lateinit var adapter: CategoriesAdapter
 
     private var categoryRepositoryImpl = CategoryRepositoryImpl()
 
@@ -66,9 +68,28 @@ class CategoriesFragment : Fragment(), CoroutineScope {
             categoriesList = categoryRepositoryImpl.getAllCategories()
             recyclerView = rootView.findViewById(R.id.recycler_categories)
             layoutManager = LinearLayoutManager(activity)
+
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = CategoriesAdapter(categoriesList)
+
+            category_search.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    adapter.filter.filter(newText)
+                    return false
+                }
+            })
+            adapter= CategoriesAdapter(categoriesList)
+            recyclerView.adapter=adapter
             progress_bar.visibility = View.GONE
+
+
+
+
         }
         return rootView
     }

@@ -22,10 +22,6 @@ class UserRepositoryImpl: UserRepository {
 
     }
 
-    override suspend fun getProfileDataById(userId: String): UserProfileData {
-        val documents=db.collection("users").get().await()
-
-    }
 
     override suspend fun hasProfileData(id: String): Boolean {
         var hasProfile=true
@@ -56,10 +52,9 @@ class UserRepositoryImpl: UserRepository {
         return userProfileData
     }
 
-
-
-
-
+    override suspend fun getProfileDataById(userId: String): UserProfileData {
+        TODO("Not yet implemented")
+    }
 
 
 }
