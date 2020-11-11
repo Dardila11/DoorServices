@@ -12,7 +12,7 @@
         android:layout_width="110dp"
         android:layout_height="106dp"
         android:layout_marginTop="276dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_baseline_room_service_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:text="DoorServices"
         android:textAllCaps="true"
         android:textColor="@color/cardview_light_background"

@@ -9,4 +9,5 @@ interface  UserRepository {
     suspend fun getUserById( id: String ) : UserProfileData
     suspend fun getProfileDataById(userId: String):UserProfileData
     suspend fun hasProfileData(id: String):Boolean
+
 }
