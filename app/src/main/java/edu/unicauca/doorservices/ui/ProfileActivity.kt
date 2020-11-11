@@ -54,12 +54,27 @@ class ProfileActivity : AppCompatActivity(), CoroutineScope {
         btn_userInfo.setOnClickListener{
             lifecycleScope.launch {
                 userProfileData = UserProfileData(
-                    txt_firstname.text.toString(),
-                    txt_lastname.text.toString(),
-                    txt_id.text.toString(),
-                    txt_address.text.toString(),
-                    txt_hood.text.toString(),
-                    txt_phone.text.toString())
+                        txt_firstname.text.toString(),
+                        txt_lastname.text.toString(),
+                        txt_id.text.toString(),
+                        txt_address.text.toString(),
+                        txt_hood.text.toString(),
+                        txt_phone.text.toString())
+                }
+            lifecycleScope.launch {
+                if (userRepositoryImpl.hasProfileData(authRepositoryImpl.getUser()!!.uid)){
+                    userProfileData= UserProfileData()
+                    userProfileData=userRepositoryImpl.getProfileDataById(authRepositoryImpl.getUser()!!.uid)
+                    txt_firstname.setText(userProfileData.firstName)
+                    txt_lastname.setText(userProfileData.lastName)
+                    txt_id.setText(userProfileData.legalId)
+                    txt_address.setText(userProfileData.address)
+                    txt_hood.setText(userProfileData.neighborhood)
+                    txt_phone.setText(userProfileData.phone)
+            }
+
+
+
 
 
                 Snackbar.make(it, "Datos guardados correctamente", Snackbar.LENGTH_SHORT)
